@@ -35,8 +35,7 @@ const getVideos = (request, sender, sendResponse) => {
 
 	for (node of nodeList) {
 		videos.push({
-			// poster: node.getAttribute("poster"),
-			poster: "https://s2-ssl.dmcdn.net/tUM8l/x120-p4c.jpg",
+			poster: node.getAttribute("poster"),
 			src: node.getAttribute("src")
 		});
 	}
