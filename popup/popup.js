@@ -65,5 +65,4 @@ const sendMessage = (tab, name, data = {}, cb) => {
 };
 
 const root = document.querySelector(".js-root");
-
-setTimeout(init, 500)
+init();
