@@ -1,17 +1,18 @@
 chrome.runtime.onMessage.addListener(
-	(request) => {
-		switch(request.name) {
+	(...args) => {
+		const requestName = args[0].name;
+		switch(requestName) {
 			case "ENTER_PIP":
-				return enterPip.apply(this, arguments);
+				return enterPip(...args);
 			case "EXIT_PIP":
-				return exitPip.apply(this, arguments);
+				return exitPip(...args);
 			case "FOCUS_VIDEO":
-				return focusVideo.apply(this, arguments);
+				return focusVideo(...args);
 			case "BLUR_VIDEO":
-				return blurVideo.apply(this, arguments);
+				return blurVideo(...args);
 			case "GET_VIDEOS":
 			default:
-				return getVideos.apply(this, arguments);
+				return getVideos(...args);
 		}
 	}
 )
@@ -22,7 +23,9 @@ const enterPip = (request) => {
 };
 
 const exitPip = () => {
-	document.exitPictureInPicture();
+	if (document.pictureInPictureElement !== null) {
+		document.exitPictureInPicture();
+	}
 }
 
 const getVideos = (request, sender, sendResponse) => {
@@ -32,7 +35,8 @@ const getVideos = (request, sender, sendResponse) => {
 
 	for (node of nodeList) {
 		videos.push({
-			poster: node.getAttribute("poster"),
+			// poster: node.getAttribute("poster"),
+			poster: "https://s2-ssl.dmcdn.net/tUM8l/x120-p4c.jpg",
 			src: node.getAttribute("src")
 		});
 	}
@@ -43,7 +47,7 @@ const getVideos = (request, sender, sendResponse) => {
 	});
 };
 
-const highlightVideo = request => {
+const focusVideo = request => {
 	const video = document.querySelectorAll("video")[request.data.index];
 
 	const boundingRect = video.getBoundingClientRect();
@@ -58,7 +62,7 @@ const highlightVideo = request => {
 	});
 }
 
-const unhighlightVideo = request => {
+const blurVideo = request => {
 	const video = document.querySelectorAll("video")[request.data.index];
 	undoStyles(video);
 }

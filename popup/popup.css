@@ -1,0 +1,68 @@
+body {
+	width: 250px;
+	padding: 5px;
+}
+
+.video {
+	display: flex;
+	align-items: center;
+	padding: 5px 0;
+	border-top: 1px solid #ccc;
+}
+
+.video:hover {
+	cursor: pointer;
+}
+
+.video:first-child {
+	padding-top: 0;
+	border-top: 0;
+}
+
+.video:last-child {
+	padding-bottom: 0;
+}
+
+.thumbnail {
+	background: black;
+	width: 89px;
+	height: 50px;
+	text-align: center
+}
+
+.thumbnail img {
+	object-fit: contain;
+	max-width: 100%;
+	max-height: 100%;
+}
+
+.thumbnail:empty:after {
+	content: '∅';
+	color: #666;
+	line-height: 50px;
+	font-size: 20px;
+}
+
+.video p {
+	position: relative;
+	padding-left: 20px;
+	line-height: 50px;
+	flex: 1;
+	margin: 0;
+}
+
+.video:hover p {
+	background: #ddd;
+}
+
+.video:hover p:after {
+	content: '↗️';
+	position: absolute;
+	right: 10px;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.empty {
+	text-align: center;
+}

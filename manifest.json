@@ -1,6 +1,6 @@
 {
 	"name": "Video Picture-in-Picture",
-	"version": "1.0-alpha",
+	"version": "0.0.1",
 	"description": "Continue watching your videos whilst doing something else",
 	"permissions": [
 		"activeTab"
